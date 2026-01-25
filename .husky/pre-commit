@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🏷️  Running type check..."
+bun run tsc --noEmit
+
+echo "🏃 Running Biome & lint-staged..."
+bun run lint-staged

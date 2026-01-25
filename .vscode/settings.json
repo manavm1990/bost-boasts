@@ -29,5 +29,6 @@
   "typescript.inlayHints.parameterNames.enabled": "none",
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.validate.enable": true
+  "typescript.validate.enable": true,
+  "cSpell.words": ["bost"]
 }
