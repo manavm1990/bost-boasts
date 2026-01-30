@@ -15,6 +15,7 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Not transpiling with TypeScript (Next.js handles it) */
     "module": "preserve",
