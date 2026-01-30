@@ -11,8 +11,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*": "biome check --no-errors-on-unmatched",
-    "*.{ts,tsx}": "biome format --write"
+    "*": [
+      "biome format --write",
+      "biome check --no-errors-on-unmatched"
+    ]
   },
   "dependencies": {
     "husky": "^9.1.7",
