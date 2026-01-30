@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Project Overview
+
+Sanity powered Next.js application.
+
 ## Code style
 
 - TypeScript strict mode
