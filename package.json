@@ -12,7 +12,7 @@
   },
   "lint-staged": {
     "*": "biome check --no-errors-on-unmatched",
-    "*.{js,jsx,ts,tsx}": "biome format --write"
+    "*.{ts,tsx}": "biome format --write"
   },
   "dependencies": {
     "husky": "^9.1.7",
