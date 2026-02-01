@@ -10,19 +10,16 @@
     "moduleDetection": "force",
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "forceConsistentCasingInFileNames": true,
-
     /* Not transpiling with TypeScript (Next.js handles it) */
     "module": "preserve",
     "noEmit": true,
-
     /* Next.js specific */
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "moduleResolution": "bundler",
     "plugins": [
