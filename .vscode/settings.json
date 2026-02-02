@@ -30,5 +30,5 @@
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.validate.enable": true,
-  "cSpell.words": ["bost"]
+  "cSpell.words": ["bost", "GROQ"]
 }
