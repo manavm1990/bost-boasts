@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run typegen",
     "dev": "next dev",
+    "prebuild": "npm run typegen",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
+    "typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate",
     "prepare": "husky"
   },
   "lint-staged": {

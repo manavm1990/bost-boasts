@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-Sanity powered Next.js application.
+Sanity powered Next.js application. We are using Sanity's headless CMS to manage content, and Next.js for the frontend.
+
+📦 management is done with `bun`.
 
 ## Code style
 
