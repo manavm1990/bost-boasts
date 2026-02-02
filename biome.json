@@ -42,7 +42,7 @@
               },
               {
                 "selector": { "kind": "typeLike" },
-                "formats": ["PascalCase"]
+                "formats": ["PascalCase", "CONSTANT_CASE"]
               },
               {
                 "selector": { "kind": "const", "scope": "global" },
