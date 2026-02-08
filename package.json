@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "bun run typegen",
     "dev": "next dev",
-    "prebuild": "bun run typegen",
+    "prebuild": "bun run typegen && bun run tsc --noEmit",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
@@ -16,7 +16,8 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "biome format --write",
-      "biome check --no-errors-on-unmatched"
+      "biome check --no-errors-on-unmatched",
+      "tsc-files --noEmit --pretty false --incremental false"
     ]
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18",
+    "tsc-files": "^1.1.4",
     "typescript": "^5.9.3"
   },
   "ignoreScripts": [
