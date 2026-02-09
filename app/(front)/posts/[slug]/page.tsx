@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
-import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
-import { POST_QUERY } from "@/sanity/lib/queries";
+import { FIRST_POST_QUERY } from "@/sanity/lib/queries";
+import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
 
 export default async function Page({
@@ -13,7 +13,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { data: post } = await sanityFetch({
-    query: POST_QUERY,
+    query: FIRST_POST_QUERY,
     params: await params,
   });
 

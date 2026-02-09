@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-import { urlFor } from "@/sanity/lib/image";
+import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
 import type { POST_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";

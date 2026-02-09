@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { urlFor } from "@/sanity/lib/image";
+import urlFor from "@/sanity/lib/url-for";
 import type { POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
 import Categories from "./categories";

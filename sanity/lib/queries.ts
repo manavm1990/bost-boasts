@@ -1,11 +1,51 @@
 import { defineQuery } from "next-sanity";
 
-export const POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)][0...12]{
-  _id, title, slug
+const POSTS_PER_PAGE = 12;
+
+export const ALL_POST_SLUGS =
+  defineQuery(`*[_type == "post" && defined(slug.current)]{ 
+  "slug": slug.current
 }`);
 
-export const POST_QUERY =
+export const FIRST_POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{
-  title, body, mainImage
+  _id,
+  title,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  }
+}`);
+
+export const PAGINATED_POSTS_QUERY =
+  defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...${POSTS_PER_PAGE}]{
+  _id,
+  title,
+  slug,
+  body,
+  mainImage,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  author->{
+    name,
+    image
+  }
 }`);
