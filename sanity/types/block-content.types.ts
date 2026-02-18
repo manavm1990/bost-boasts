@@ -11,7 +11,6 @@ import { defineArrayMember, defineType } from "sanity";
  *    type: 'blockContent'
  *  }
  */
-
 export const blockContentType = defineType({
   title: "Block Content",
   name: "blockContent",
@@ -19,10 +18,15 @@ export const blockContentType = defineType({
   of: [
     defineArrayMember({
       type: "block",
-      // Styles let you define what blocks can be marked up as. The default
-      // set corresponds with HTML tags, but you can set any title or value
-      // you want, and decide how you want to deal with it where you want to
-      // use your content.
+
+      /**
+       * Styles define the different block types that can be used in the editor.
+       * Each style corresponds to a specific HTML tag or custom rendering.
+       * The "Normal" style is the default and
+       * renders as a standard paragraph (<p>),
+       * while "H1" through "H4" render as heading tags (<h1> to <h4>).
+       * The "Quote" style renders as a blockquote (<blockquote>).
+       */
       styles: [
         { title: "Normal", value: "normal" },
         { title: "H1", value: "h1" },
@@ -32,14 +36,12 @@ export const blockContentType = defineType({
         { title: "Quote", value: "blockquote" },
       ],
       lists: [{ title: "Bullet", value: "bullet" }],
-      // Marks let you mark up inline text in the Portable Text Editor
       marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
         ],
+
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
@@ -57,9 +59,15 @@ export const blockContentType = defineType({
         ],
       },
     }),
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
+
+    /**
+     * Additional types.
+     *
+     * * Can't use primitive types like 'string' or 'number' in
+     * the same array as a block type,
+     * so we define an image type here to allow for
+     *  image blocks within the content.
+     */
     defineArrayMember({
       type: "image",
       icon: ImageIcon,
