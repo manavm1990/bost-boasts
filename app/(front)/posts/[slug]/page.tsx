@@ -17,9 +17,7 @@ export default async function Page({
     params: await params,
   });
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 py-12">
