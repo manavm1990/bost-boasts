@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/live";
 import { PAGINATED_POSTS_QUERY } from "@/sanity/lib/queries";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
 export default async function Page() {
-  const { data: posts } = await sanityFetch({ query: PAGINATED_POSTS_QUERY });
+  // Type assertion required: sanityFetch loses generic inference after
+  // @sanity/client 7.16.0 / sanity 5.13.0. Remove when next-sanity fixes it.
+  const { data: posts } = (await sanityFetch({
+    query: PAGINATED_POSTS_QUERY,
+  })) as { data: PAGINATED_POSTS_QUERY_RESULT };
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
@@ -20,8 +25,10 @@ export default async function Page() {
           </li>
         ))}
       </ul>
-      <hr />
-      <Link href="/">&larr; Return home</Link>
+
+      <Link href="/" className="mt-4">
+        &larr; Return home 🏠
+      </Link>
     </main>
   );
 }
