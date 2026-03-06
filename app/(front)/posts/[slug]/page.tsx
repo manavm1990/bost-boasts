@@ -41,8 +41,9 @@ export default async function Page({
           <PortableText value={post.body} components={components} />
         </div>
       ) : null}
-      <hr />
-      <Link href="/posts">&larr; Return to index</Link>
+      <Link href="/posts" className="mt-4">
+        &larr; Return to index
+      </Link>
     </main>
   );
 }
