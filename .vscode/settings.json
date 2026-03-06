@@ -26,10 +26,10 @@
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "typescript.inlayHints.parameterNames.enabled": "none",
-  "typescript.inlayHints.variableTypes.enabled": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.validate.enable": true,
-  "cSpell.words": ["bost", "Geopoint"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "js/ts.inlayHints.parameterNames.enabled": "none",
+  "js/ts.inlayHints.variableTypes.enabled": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.validate.enabled": true,
+  "cSpell.words": ["bost", "Geopoint", "unrs"],
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
