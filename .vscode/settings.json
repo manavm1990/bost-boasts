@@ -30,6 +30,6 @@
   "js/ts.inlayHints.variableTypes.enabled": false,
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "js/ts.validate.enabled": true,
-  "cSpell.words": ["bost", "Geopoint", "unrs"],
+  "cSpell.words": ["bost", "Geopoint", "lqip", "unrs"],
   "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
