@@ -10,12 +10,11 @@ export const { sanityFetch, SanityLive } = defineLive({
   client,
 });
 
-export function querySanity<Q extends keyof SanityQueries>(
+export default <Q extends keyof SanityQueries>(
   options: Parameters<typeof sanityFetch>[0] & { query: Q },
-) {
-  return sanityFetch(options) as Promise<
+) =>
+  sanityFetch(options) as Promise<
     Omit<Awaited<ReturnType<typeof sanityFetch>>, "data"> & {
       data: SanityQueries[Q];
     }
   >;
-}
