@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bost Watch Report",
+  title: "Indivisible LTEs",
   description:
-    "A shadow bulletin newsletter keeping the 🐶 killer Congressman Mike Bost accountable and honest.",
+    "A platform for managing LTEs (Letters to Editors) for the Indivisible movement.",
 };
 
 export default function RootLayout({
