@@ -1,7 +1,7 @@
-import type { POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
 type CategoriesProps = {
-  categories: NonNullable<POSTS_QUERY_RESULT>[number]["categories"];
+  categories: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["categories"];
 };
 
 export default function Categories({ categories }: CategoriesProps) {

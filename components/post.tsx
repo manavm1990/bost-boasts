@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
-import type { POST_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
 import Categories from "./categories";
 import Published from "./published";
@@ -15,7 +15,7 @@ export function Post({
   body,
   publishedAt,
   categories,
-}: NonNullable<POST_QUERY_RESULT>) {
+}: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]) {
   return (
     <article className="grid lg:grid-cols-12 gap-y-12">
       <header className="lg:col-span-12 flex flex-col gap-4 items-start">

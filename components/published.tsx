@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import type { POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
 type PublishedProps = {
-  publishedAt: NonNullable<POSTS_QUERY_RESULT>[number]["publishedAt"];
+  publishedAt: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["publishedAt"];
 };
 
 export default function Published({ publishedAt }: PublishedProps) {

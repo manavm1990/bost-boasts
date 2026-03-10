@@ -1,9 +1,9 @@
 import Image from "next/image";
 import urlFor from "@/sanity/lib/url-for";
-import type { POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
 type AuthorProps = {
-  author: NonNullable<POSTS_QUERY_RESULT>[number]["author"];
+  author: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["author"];
 };
 
 export default function Author({ author }: AuthorProps) {

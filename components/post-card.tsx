@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import urlFor from "@/sanity/lib/url-for";
-import type { POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
 import Categories from "./categories";
 import Published from "./published";
@@ -13,7 +13,7 @@ export function PostCard({
   mainImage,
   publishedAt,
   categories,
-}: POSTS_QUERY_RESULT[0]) {
+}: PAGINATED_POSTS_QUERY_RESULT[0]) {
   return (
     <Link className="group" href={`/posts/${slug?.current}`}>
       <article className="flex flex-col-reverse gap-4 md:grid md:grid-cols-12 md:gap-0">
