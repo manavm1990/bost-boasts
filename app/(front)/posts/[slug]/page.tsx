@@ -7,7 +7,7 @@ import { FIRST_POST_QUERY } from "@/sanity/lib/queries";
 import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
 
-export default async function Page({
+export default async function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
