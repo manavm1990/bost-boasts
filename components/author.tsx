@@ -2,11 +2,11 @@ import Image from "next/image";
 import urlFor from "@/sanity/lib/url-for";
 import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
-type AuthorProps = {
+export default function Author({
+  author,
+}: {
   author: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["author"];
-};
-
-export default function Author({ author }: AuthorProps) {
+}) {
   return author?.image || author?.name ? (
     <figure className="flex items-center gap-2">
       {author?.image ? (

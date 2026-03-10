@@ -1,10 +1,10 @@
 import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 
-type CategoriesProps = {
+export default function Categories({
+  categories,
+}: {
   categories: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["categories"];
-};
-
-export default function Categories({ categories }: CategoriesProps) {
+}) {
   return (
     <ul className="flex gap-2">
       {categories.map((category) => (
