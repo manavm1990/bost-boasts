@@ -1,5 +1,6 @@
 {
   "chat.useAgentsMdFile": true,
+  "cSpell.words": ["bost"]
   "css.validate": false,
   "editor.autoClosingBrackets": "beforeWhitespace",
   "editor.autoClosingComments": "always",
@@ -13,22 +14,13 @@
   "editor.formatOnSave": true,
   "editor.linkedEditing": true,
   "editor.wordWrap": "wordWrapColumn",
-  "eslint.rules.customizations": [
-    {
-      "rule": "*",
-      "severity": "warn"
-    }
-  ],
-  "eslint.validate": ["typescript", "typescriptreact"],
   "files.autoSave": "onFocusChange",
   "html.autoClosingTags": true,
+  "js/ts.inlayHints.parameterNames.enabled": "none",
+  "js/ts.inlayHints.variableTypes.enabled": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "typescript.inlayHints.parameterNames.enabled": "none",
-  "typescript.inlayHints.variableTypes.enabled": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.validate.enable": true,
-  "cSpell.words": ["bost"]
 }
