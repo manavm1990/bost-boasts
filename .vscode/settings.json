@@ -1,5 +1,6 @@
 {
   "chat.useAgentsMdFile": true,
+  "cSpell.words": ["bost", "Geopoint", "lqip", "unrs"],
   "css.validate": false,
   "editor.autoClosingBrackets": "beforeWhitespace",
   "editor.autoClosingComments": "always",
@@ -13,23 +14,15 @@
   "editor.formatOnSave": true,
   "editor.linkedEditing": true,
   "editor.wordWrap": "wordWrapColumn",
-  "eslint.rules.customizations": [
-    {
-      "rule": "*",
-      "severity": "warn"
-    }
-  ],
-  "eslint.validate": ["typescript", "typescriptreact"],
   "files.autoSave": "onFocusChange",
   "html.autoClosingTags": true,
+  "js/ts.inlayHints.parameterNames.enabled": "none",
+  "js/ts.inlayHints.variableTypes.enabled": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "js/ts.inlayHints.parameterNames.enabled": "none",
-  "js/ts.inlayHints.variableTypes.enabled": false,
-  "js/ts.updateImportsOnFileMove.enabled": "always",
   "js/ts.validate.enabled": true,
-  "cSpell.words": ["bost", "Geopoint", "lqip", "unrs"],
   "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
