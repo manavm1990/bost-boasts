@@ -25,3 +25,45 @@ Sanity powered Next.js application. We are using Sanity's headless CMS to manage
 
 - Keep diffs small and targeted.
 - Ask more questions rather than making assumptions.
+
+## Agent Skills Map
+
+Project skills live only in `.agents/skills/` and are locked in `skills-lock.json`. Read the matching `SKILL.md` (and only needed `references/`) before domain work. Do not reinstall or broaden the skill set unless explicitly asked.
+
+| Skill | Use when |
+| --- | --- |
+| `sanity-best-practices` | Schemas (`defineType` / `defineField`), GROQ / `defineQuery`, TypeGen, Portable Text, images, Studio structure, Visual Editing, Sanity + Next.js |
+| `content-modeling-best-practices` | Content architecture, field shapes, references vs embedded objects, taxonomies, avoiding page-shaped schemas |
+| `seo-aeo-best-practices` | Page/metadata SEO, Open Graph, sitemaps, `robots.txt`, JSON-LD, EEAT, AI-answer (AEO) readiness |
+| `frontend-ui-engineering` | Building or changing user-facing UI, layouts, accessibility, component state |
+| `frontend-design` | New or reshaped visual design, typography, distinctive aesthetic direction |
+| `vercel-composition-patterns` | Compound components, boolean-prop cleanup, flexible component APIs, React 19 composition |
+| `vercel-react-best-practices` | React/Next performance: waterfalls, bundle size, RSC boundaries, re-render and data-fetch patterns |
+| `web-design-guidelines` | UI/UX accessibility or interface-guideline audits |
+| `code-review-and-quality` | Before merge; multi-axis review of agent or human changes |
+| `lte-writing` | Drafting letters to the editor / accountability journalism LTEs |
+| `find-skills` | Discovering installable skills when a capability seems missing |
+
+### Routing rules
+
+- Prefer the single most specific skill first; load a second only when the task truly crosses domains.
+- Sanity schema/Studio/GROQ/TypeGen → `sanity-best-practices`. Content model design debates → also `content-modeling-best-practices`.
+- Public page SEO/metadata/structured data → `seo-aeo-best-practices`. CMS-driven metadata field work → pair with `sanity-best-practices`.
+- UI implementation → `frontend-ui-engineering`; visual direction → `frontend-design`; component API shape → `vercel-composition-patterns`; React/Next performance → `vercel-react-best-practices`.
+- Finish non-trivial changes with `code-review-and-quality` before calling the work done.
+
+## Sanity Workflow
+
+- Studio + schema live under `sanity/`; the Next.js app consumes content from `app/`.
+- When working with Sanity, follow `.agents/skills/sanity-best-practices/SKILL.md` and load only the relevant references (usually `schema`, `groq`, and/or `nextjs`).
+- Prefer typed GROQ (`defineQuery`) and the repo TypeGen flow (`bun run typegen`) over untyped queries and hand-written content interfaces.
+- Model relationships with `reference` fields; let Sanity generate ordinary document `_id`s; use explicit IDs mainly for Studio-controlled singletons.
+- Fetch on the server by default in the Next.js App Router. Do not invent a parallel client data layer when server fetch + skill guidance covers it.
+- After schema changes: update Studio structure if needed, refresh TypeGen, and smoke-check Studio + website.
+
+## SEO Routing Instructions
+
+- Default SEO/AEO work → `.agents/skills/seo-aeo-best-practices/SKILL.md` (`technical-seo`, `structured-data`, `eeat-principles`, `aeo-considerations` as needed).
+- CMS-driven metadata → also Sanity `references/seo.md` plus schema/GROQ refs if fields or queries change.
+- Use Next.js `metadata` / `generateMetadata` (not ad-hoc `<head>` tags). Canonical/OG/JSON-LD URLs should match the production domain and visible page content.
+- Prefer generated `sitemap` / `robots` from the real route inventory over stale hand-maintained path lists.
