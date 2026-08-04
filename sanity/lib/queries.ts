@@ -3,7 +3,7 @@ import { defineQuery } from "next-sanity";
 const POSTS_PER_PAGE = 12;
 
 export const ALL_POST_SLUGS =
-  defineQuery(`*[_type == "post" && defined(slug.current)]{ 
+  defineQuery(`*[_type == "post" && defined(slug.current)]{
   "slug": slug.current
 }`);
 

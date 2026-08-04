@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { querySanity } from "@/sanity/lib/live";
+import querySanity from "@/sanity/lib/live";
 import { PAGINATED_POSTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function PostsPage() {

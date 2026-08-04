@@ -21,7 +21,7 @@ export default async function PostPage({
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 py-12">
-      {post?.mainImage ? (
+      {post?.mainImage && (
         <Image
           className="w-full aspect-300/150 object-cover rounded-lg"
           src={urlFor(post.mainImage)
@@ -34,7 +34,8 @@ export default async function PostPage({
           width={300}
           height={150}
         />
-      ) : null}
+      )}
+
       <h1 className="text-4xl font-bold text-balance">{post?.title}</h1>
       {post?.body ? (
         <div className="prose">

@@ -1,20 +1,27 @@
-// Querying with "sanityFetch" will keep content automatically updated
-// Before using it, import and render "<SanityLive />" in your layout, see
-// https://github.com/sanity-io/next-sanity#live-content-api for more information.
 import type { SanityQueries } from "@sanity/client";
 import { defineLive } from "next-sanity/live";
 import type {} from "@/sanity/sanity.types";
 import client from "./client";
 
-export const { sanityFetch, SanityLive } = defineLive({
-  client,
-});
-
-export default <Q extends keyof SanityQueries>(
+/**
+ * Typed sanityFetch: preserves TypeGen result type on `data`.
+ *
+ * Usage (either import style):
+ *   import querySanity from '@/sanity/lib/live'
+ *   import { querySanity } from '@/sanity/lib/live'
+ *   const { data: posts } = await querySanity({ query: PAGINATED_POSTS_QUERY })
+ */
+function querySanity<Q extends keyof SanityQueries>(
   options: Parameters<typeof sanityFetch>[0] & { query: Q },
-) =>
-  sanityFetch(options) as Promise<
+) {
+  return sanityFetch(options) as Promise<
     Omit<Awaited<ReturnType<typeof sanityFetch>>, "data"> & {
       data: SanityQueries[Q];
     }
   >;
+}
+
+export const { sanityFetch, SanityLive } = defineLive({
+  client,
+});
+export default querySanity;
