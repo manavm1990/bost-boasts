@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Indivisible LTEs",
+  title: "IL-12 Dispatch",
   description:
-    "A platform for managing LTEs (Letters to Editors) for the Indivisible movement.",
+    "Newsletters and dispatches for Illinois's 12th Congressional District.",
 };
 
 export default function RootLayout({
