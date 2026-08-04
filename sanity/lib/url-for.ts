@@ -1,4 +1,3 @@
-// Utility to generate optimized image URLs from Sanity image references
 import type { SanityImageSource } from "@sanity/image-url";
 import { createImageUrlBuilder } from "@sanity/image-url";
 
