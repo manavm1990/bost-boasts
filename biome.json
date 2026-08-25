@@ -14,7 +14,8 @@
       "!.next",
       "!dist",
       "!build",
-      "!**/globals.css"
+      "!**/globals.css",
+      "!sanity/sanity.types.ts"
     ]
   },
   "formatter": {
