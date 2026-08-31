@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "typegen": "bunx sanity@latest schema extract --enforce-required-fields --path=sanity/extract.json && bunx sanity@latest typegen generate",
+    "typegen": "bunx sanity@latest schema extract --force --enforce-required-fields --path=sanity/extract.json && bunx sanity@latest typegen generate",
     "skills:update": "skills update -y -p && rm -rf .claude",
     "prepare": "husky"
   },
