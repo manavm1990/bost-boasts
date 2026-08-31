@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
-import { sanityFetch } from "@/sanity/lib/live";
+import querySanity from "@/sanity/lib/live";
 import { FIRST_POST_QUERY } from "@/sanity/lib/queries";
 import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
@@ -12,7 +12,7 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { data: post } = await sanityFetch({
+  const { data: post } = await querySanity({
     query: FIRST_POST_QUERY,
     params: await params,
   });
