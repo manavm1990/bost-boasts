@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import SanityImage from "@/components/sanity-image";
-import Title from "@/components/title";
+import { H1 } from "@/components/typography";
 import { getPostBySlug } from "@/lib/get-post";
 import urlFor from "@/sanity/lib/url-for";
 import { components } from "@/sanity/portable-text-components";
@@ -79,7 +79,9 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       ) : null}
 
-      <Title>{post.title}</Title>
+      <H1 className="text-2xl md:text-4xl lg:text-6xl text-pretty max-w-3xl">
+        {post.title}
+      </H1>
       {post.body ? (
         <div className="prose prose-headings:font-serif">
           <PortableText value={post.body} components={components} />

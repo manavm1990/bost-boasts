@@ -6,7 +6,7 @@ import type { FIRST_POST_QUERY_RESULT } from "@/sanity/sanity.types";
 import Author from "./author";
 import Categories from "./categories";
 import Published from "./published";
-import Title from "./title";
+import { H1 } from "./typography";
 
 export function Post({
   title,
@@ -23,7 +23,7 @@ export function Post({
           <Categories categories={categories} />
           <Published publishedAt={publishedAt} />
         </nav>
-        <Title>{title}</Title>
+        <H1>{title}</H1>
         <Author author={author} />
       </header>
 
