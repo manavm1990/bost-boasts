@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PortableText } from "next-sanity";
-import SanityImage from "@/components/sanity-image";
-import { H1 } from "@/components/typography";
+import { Post } from "@/components/post";
 import { getPostBySlug } from "@/lib/get-post";
 import urlFor from "@/sanity/lib/url-for";
-import { components } from "@/sanity/portable-text-components";
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -64,32 +60,8 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post) notFound();
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 py-12">
-      {post.mainImage ? (
-        <div className="overflow-hidden rounded-lg">
-          <SanityImage
-            image={post.mainImage}
-            alt={post.mainImage.alt || "Post cover image"}
-            width={1200}
-            height={630}
-            className="w-full aspect-video"
-            sizes="(max-width: 768px) 100vw, 75vw"
-            preload
-          />
-        </div>
-      ) : null}
-
-      <H1 className="text-2xl md:text-4xl lg:text-6xl text-pretty max-w-3xl">
-        {post.title}
-      </H1>
-      {post.body ? (
-        <div className="prose prose-headings:font-serif">
-          <PortableText value={post.body} components={components} />
-        </div>
-      ) : null}
-      <Link href="/posts" className="mt-4">
-        &larr; Return to index
-      </Link>
+    <main className="container mx-auto py-12">
+      <Post {...post} />
     </main>
   );
 }
