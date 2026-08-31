@@ -67,3 +67,13 @@ Project skills live only in `.agents/skills/` and are locked in `skills-lock.jso
 - CMS-driven metadata → also Sanity `references/seo.md` plus schema/GROQ refs if fields or queries change.
 - Use Next.js `metadata` / `generateMetadata` (not ad-hoc `<head>` tags). Canonical/OG/JSON-LD URLs should match the production domain and visible page content.
 - Prefer generated `sitemap` / `robots` from the real route inventory over stale hand-maintained path lists.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

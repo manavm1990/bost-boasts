@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import SanityImage from "@/components/sanity-image";
+import Title from "@/components/title";
 import querySanity from "@/sanity/lib/live";
 import { FIRST_POST_QUERY } from "@/sanity/lib/queries";
 import urlFor from "@/sanity/lib/url-for";
@@ -67,9 +68,9 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       )}
 
-      <h1 className="text-4xl font-bold text-balance">{post?.title}</h1>
+      <Title>{post?.title}</Title>
       {post?.body ? (
-        <div className="prose">
+        <div className="prose prose-headings:font-serif">
           <PortableText value={post.body} components={components} />
         </div>
       ) : null}

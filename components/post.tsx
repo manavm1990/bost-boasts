@@ -39,7 +39,7 @@ export function Post({
       ) : null}
 
       {body ? (
-        <section className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg">
+        <section className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg prose-headings:font-serif">
           <PortableText value={body} components={components} />
         </section>
       ) : null}

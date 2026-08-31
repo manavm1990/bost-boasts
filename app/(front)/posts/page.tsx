@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { H1 } from "@/components/typography";
 import querySanity from "@/sanity/lib/live";
 import { PAGINATED_POSTS_QUERY } from "@/sanity/lib/queries";
 
@@ -9,7 +10,7 @@ export default async function PostsPage() {
 
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <h1 className="text-4xl font-bold">Post index</h1>
+      <H1>Post index</H1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
         {posts.map((post) => (
           <li key={post._id}>
