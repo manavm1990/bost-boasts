@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# skills CLI adapter path for Claude Code (canonical skills live in .agents/skills/)
+.claude/

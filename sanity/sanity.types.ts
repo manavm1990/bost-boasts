@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: sanity/extract.json
 export type AuthorReference = {
   _ref: string;
@@ -275,22 +277,22 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint;
 
-export declare const internalGroqTypeReferenceTo: unique symbol;
-
 // Source: sanity/lib/queries.ts
 // Variable: ALL_POST_SLUGS
-// Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
+// Query: *[_type == "post" && defined(slug.current)]{  "slug": slug.current,  _updatedAt}
 export type ALL_POST_SLUGS_RESULT = Array<{
   slug: string;
+  _updatedAt: string;
 }>;
 
 // Source: sanity/lib/queries.ts
 // Variable: FIRST_POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  "excerpt": pt::text(body),  mainImage,  publishedAt,  _updatedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type FIRST_POST_QUERY_RESULT = {
   _id: string;
   title: string;
   body: BlockContent | null;
+  excerpt: string;
   mainImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -300,6 +302,7 @@ export type FIRST_POST_QUERY_RESULT = {
     _type: "image";
   } | null;
   publishedAt: string | null;
+  _updatedAt: string;
   categories:
     | Array<{
         _id: string;
@@ -321,12 +324,11 @@ export type FIRST_POST_QUERY_RESULT = {
 
 // Source: sanity/lib/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type PAGINATED_POSTS_QUERY_RESULT = Array<{
   _id: string;
   title: string;
   slug: Slug;
-  body: BlockContent | null;
   mainImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -359,8 +361,8 @@ export type PAGINATED_POSTS_QUERY_RESULT = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug.current)]{ \n  "slug": slug.current\n}': ALL_POST_SLUGS_RESULT;
-    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': FIRST_POST_QUERY_RESULT;
-    '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': PAGINATED_POSTS_QUERY_RESULT;
+    '*[_type == "post" && defined(slug.current)]{\n  "slug": slug.current,\n  _updatedAt\n}': ALL_POST_SLUGS_RESULT;
+    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  "excerpt": pt::text(body),\n  mainImage,\n  publishedAt,\n  _updatedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': FIRST_POST_QUERY_RESULT;
+    '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': PAGINATED_POSTS_QUERY_RESULT;
   }
 }

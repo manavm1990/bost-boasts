@@ -2,9 +2,15 @@ import { defineQuery } from "next-sanity";
 
 const POSTS_PER_PAGE = 12;
 
+/**
+ * _` prefaced fields are meant to distinguish between
+ * Sanity system fields and user-defined fields.
+ */
+
 export const ALL_POST_SLUGS =
-  defineQuery(`*[_type == "post" && defined(slug.current)]{ 
-  "slug": slug.current
+  defineQuery(`*[_type == "post" && defined(slug.current)]{
+  "slug": slug.current,
+  _updatedAt
 }`);
 
 export const FIRST_POST_QUERY =
@@ -12,8 +18,10 @@ export const FIRST_POST_QUERY =
   _id,
   title,
   body,
+  "excerpt": pt::text(body),
   mainImage,
   publishedAt,
+  _updatedAt,
   "categories": coalesce(
     categories[]->{
       _id,
@@ -28,12 +36,12 @@ export const FIRST_POST_QUERY =
   }
 }`);
 
+/** List card fields only — full body is reserved for the post detail query. */
 export const PAGINATED_POSTS_QUERY =
   defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...${POSTS_PER_PAGE}]{
   _id,
   title,
   slug,
-  body,
   mainImage,
   publishedAt,
   "categories": coalesce(

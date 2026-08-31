@@ -1,6 +1,4 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+export default {
   images: {
     remotePatterns: [
       {
@@ -11,5 +9,3 @@ const nextConfig: NextConfig = {
   },
   typedRoutes: true,
 };
-
-export default nextConfig;
