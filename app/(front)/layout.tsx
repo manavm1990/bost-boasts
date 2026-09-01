@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function FrontLayout({
   children,
@@ -14,6 +15,7 @@ export default function FrontLayout({
       {children}
       <Footer />
       <SanityLive />
+      <SpeedInsights />
     </>
   );
 }
