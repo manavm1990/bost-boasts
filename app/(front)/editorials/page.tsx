@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { H1, Kicker, List, P, SectionHeading } from "@/components/typography";
-import { EDITOR_EMAIL } from "@/lib/site-info";
 
 export const metadata: Metadata = {
   title: "Reader Editorials",
@@ -111,18 +111,17 @@ export default function EditorialsPage() {
             for trimming.
           </li>
           <li>
-            Include your full name as you want it published, and a way for us to
-            reach you (not published).
+            We’ll ask for your full name and a contact email when you submit.
+            The email is for follow-up only and won’t be published.
           </li>
           <li>
-            Submit to{" "}
-            <a
-              href={`mailto:${EDITOR_EMAIL}`}
+            Submit through the{" "}
+            <Link
+              href="/editorials/submit"
               className="font-bold text-brand underline underline-offset-2"
             >
-              {EDITOR_EMAIL}
-            </a>
-            .
+              submission form
+            </Link>
           </li>
         </List>
 
@@ -154,12 +153,12 @@ export default function EditorialsPage() {
           <P className="mt-0 font-serif text-lg text-slate-900 italic">
             Publication isn't guaranteed. We choose what runs.
           </P>
-          <a
-            href={`mailto:${EDITOR_EMAIL}`}
+          <Link
+            href="/editorials/submit"
             className="inline-flex items-center gap-2.5 bg-brand px-6 py-3.5 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-dark"
           >
             Submit an Editorial &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </main>
