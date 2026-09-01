@@ -6,7 +6,7 @@ import Categories from "./categories";
 import Published from "./published";
 import SanityImage from "./sanity-image";
 import SharePost from "./share-post.client";
-import { H1, Lead, OpinionBadge } from "./typography";
+import { Eyebrow, H1, Lead, OpinionBadge } from "./typography";
 
 export default function Post({
   title,
@@ -70,9 +70,7 @@ export default function Post({
 
       {sources?.length ? (
         <footer className="mt-12 border-t border-slate-200 pt-5">
-          <h2 className="mb-4 font-sans text-xs font-extrabold tracking-wide text-slate-400 uppercase">
-            Sources
-          </h2>
+          <Eyebrow className="mb-4">Sources</Eyebrow>
           <div className="space-y-2.5 text-[13px] leading-relaxed text-slate-500">
             {sources.map((source) => (
               <p key={source._key}>

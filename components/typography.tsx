@@ -34,6 +34,21 @@ export function Blockquote({
   );
 }
 
+export function Eyebrow({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"h2">) {
+  return (
+    <h2
+      className={cn(
+        "font-sans text-xs font-extrabold tracking-wide text-slate-400 uppercase",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export function FactBox({
   title = "The Record",
   className,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
+import { Eyebrow } from "@/components/typography";
 import {
   emailShareUrl,
   facebookShareUrl,
@@ -84,12 +85,7 @@ export default function SharePost({
       aria-labelledby="share-post-heading"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2
-          id="share-post-heading"
-          className="font-sans text-xs font-extrabold tracking-wide text-slate-400 uppercase"
-        >
-          Share this story
-        </h2>
+        <Eyebrow id="share-post-heading">Share this story</Eyebrow>
         <ul className="flex flex-wrap items-center gap-0.5">
           <li>
             <button

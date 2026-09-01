@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
 import Categories from "./categories";
 import Published from "./published";
-import { OpinionBadge } from "./typography";
+import { H1, H2, Lead, OpinionBadge } from "./typography";
 
 type PostCardProps = PAGINATED_POSTS_QUERY_RESULT[0] & {
   variant?: "lead" | "list";
@@ -28,13 +28,13 @@ export default function PostCard({
           <Categories categories={categories} />
           {postType === "editorial" ? <OpinionBadge /> : null}
         </div>
-        <h1 className="mt-3.5 font-serif text-4xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-[44px]">
+        <H1 className="mt-3.5 text-4xl leading-tight font-extrabold tracking-tight md:text-[44px]">
           {title}
-        </h1>
+        </H1>
         {dek ? (
-          <p className="mt-4 max-w-3xl font-serif text-lg text-slate-600 italic md:text-xl">
+          <Lead className="mt-4 max-w-3xl font-serif text-lg italic md:text-xl">
             {dek}
-          </p>
+          </Lead>
         ) : null}
         <Published
           publishedAt={publishedAt}
@@ -63,9 +63,9 @@ export default function PostCard({
           />
         </div>
         <div>
-          <h2 className="font-serif text-2xl font-bold text-slate-900 transition-colors group-hover:text-brand">
+          <H2 className="text-2xl font-bold transition-colors group-hover:text-brand">
             {title}
-          </h2>
+          </H2>
           {dek ? (
             <p className="mt-2 max-w-2xl text-[15px] text-slate-500">{dek}</p>
           ) : null}
