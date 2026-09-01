@@ -1,5 +1,8 @@
 import { ImageIcon } from "@sanity/icons/Image";
 import { defineArrayMember, defineType } from "sanity";
+import { factBoxType } from "./fact-box";
+import { kickerType } from "./kicker";
+import { pullQuoteType } from "./pull-quote";
 
 /**
  * This is the schema type for block content used in the post document type
@@ -80,5 +83,8 @@ export const blockContentType = defineType({
         },
       ],
     }),
+    defineArrayMember({ type: factBoxType.name }),
+    defineArrayMember({ type: kickerType.name }),
+    defineArrayMember({ type: pullQuoteType.name }),
   ],
 });

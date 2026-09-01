@@ -15,6 +15,12 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity/extract.json
+export type PullQuote = {
+  _type: "pullQuote";
+  text: string;
+  attribution?: string;
+};
+
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -90,6 +96,15 @@ export type BlockContent = Array<
       _type: "image";
       _key: string;
     }
+  | ({
+      _key: string;
+    } & FactBox)
+  | ({
+      _key: string;
+    } & Kicker)
+  | ({
+      _key: string;
+    } & PullQuote)
 >;
 
 export type SanityImageCrop = {
@@ -106,6 +121,35 @@ export type SanityImageHotspot = {
   y: number;
   height: number;
   width: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type Kicker = {
+  _type: "kicker";
+  section: string;
+  category?: string;
+};
+
+export type FactBox = {
+  _type: "factBox";
+  title?: string;
+  body: string;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  description?: string;
 };
 
 export type Author = {
@@ -141,23 +185,6 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  description?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -258,6 +285,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | PullQuote
   | AuthorReference
   | SanityImageAssetReference
   | CategoryReference
@@ -265,9 +293,11 @@ export type AllSanitySchemaTypes =
   | BlockContent
   | SanityImageCrop
   | SanityImageHotspot
-  | Author
   | Slug
+  | Kicker
+  | FactBox
   | Category
+  | Author
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions

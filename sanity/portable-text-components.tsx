@@ -1,25 +1,14 @@
 import Image from "next/image";
 import type { PortableTextComponents } from "next-sanity";
+import { FactBox, Kicker, PullQuote } from "@/components/typography";
 import urlFor from "@/sanity/lib/url-for";
 
-/**
- * Custom renderers for Portable Text blocks.
- *
- * Defines how Sanity's structured rich text content is transformed into
- * React components.
- * These overrides replace default rendering behavior for specific block types.
- *
- * @see https://github.com/portabletext/react-portabletext
- */
 export const components: PortableTextComponents = {
+  block: {
+    /** Quote style → branded pull quote (no attribution field on block styles). */
+    blockquote: ({ children }) => <PullQuote>{children}</PullQuote>,
+  },
   types: {
-    /**
-     * Custom image renderer for images embedded in Portable Text.
-     *
-     * Transforms Sanity image references into
-     * optimized Next.js Image components
-     * with CDN-powered transformations (format conversion, resizing, quality).
-     */
     image: (props) =>
       props.value ? (
         <Image
@@ -36,5 +25,37 @@ export const components: PortableTextComponents = {
           height={664}
         />
       ) : null,
+    factBox: ({ value }) => {
+      if (!value?.body) return null;
+
+      return (
+        <FactBox title={value.title || undefined} className="not-prose">
+          <p className="whitespace-pre-line">{value.body}</p>
+        </FactBox>
+      );
+    },
+    kicker: ({ value }) => {
+      if (!value?.section) return null;
+
+      return (
+        <Kicker
+          section={value.section}
+          category={value.category || undefined}
+          className="not-prose"
+        />
+      );
+    },
+    pullQuote: ({ value }) => {
+      if (!value?.text) return null;
+
+      return (
+        <PullQuote
+          attribution={value.attribution || undefined}
+          className="not-prose"
+        >
+          {value.text}
+        </PullQuote>
+      );
+    },
   },
 };
