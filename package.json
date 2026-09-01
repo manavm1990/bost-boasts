@@ -22,10 +22,12 @@
     ]
   },
   "dependencies": {
+    "@base-ui-components/react": "^1.0.0-rc.0",
     "@sanity/client": "^8.4.0",
     "@sanity/icons": "^5.2.1",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^6.11.0",
+    "@wrksz/themes": "^2.0.0-beta.2",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.23",
     "husky": "^9.1.7",
