@@ -22,6 +22,16 @@ export const submissionType = defineType({
       validation: (rule) => rule.required().email(),
     }),
     defineField({
+      name: "image",
+      title: "Author photo",
+      description:
+        "Optional headshot from the submitter. Copy onto the author document if the piece runs.",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: "title",
       title: "Suggested title",
       type: "string",
@@ -60,11 +70,13 @@ export const submissionType = defineType({
       title: "title",
       name: "name",
       submittedAt: "submittedAt",
+      media: "image",
     },
-    prepare({ title, name, submittedAt }) {
+    prepare({ title, name, submittedAt, media }) {
       return {
         title: title || "(untitled)",
         subtitle: [name, submittedAt?.slice(0, 10)].filter(Boolean).join(" — "),
+        media,
       };
     },
   },

@@ -15,6 +15,51 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity/extract.json
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type Submission = {
+  _id: string;
+  _type: "submission";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  email: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  thesis: string;
+  body: string;
+  sources: Array<string>;
+  submittedAt?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
 export type PullQuote = {
   _type: "pullQuote";
   text: string;
@@ -26,13 +71,6 @@ export type AuthorReference = {
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "author";
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type CategoryReference = {
@@ -115,22 +153,6 @@ export type BlockContent = Array<
       _key: string;
     } & PullQuote)
 >;
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
 
 export type Slug = {
   _type: "slug";
@@ -304,14 +326,15 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
+  | Submission
+  | SanityImageCrop
+  | SanityImageHotspot
   | PullQuote
   | AuthorReference
-  | SanityImageAssetReference
   | CategoryReference
   | Post
   | BlockContent
-  | SanityImageCrop
-  | SanityImageHotspot
   | Slug
   | FactBox
   | Category

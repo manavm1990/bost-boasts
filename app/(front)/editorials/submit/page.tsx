@@ -82,6 +82,34 @@ export default function SubmitEditorialPage() {
             errors={state.fieldErrors?.email}
           />
 
+          <div>
+            <label htmlFor="image" className={LABEL_CLASS}>
+              Author photo
+              <span className="ml-1 font-medium normal-case text-muted-2">
+                (optional)
+              </span>
+            </label>
+            <Muted className="mb-1.5 text-xs">
+              Headshot for the byline if we publish. JPEG, PNG, or WebP — 2 MB
+              max.
+            </Muted>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              className={cn(
+                INPUT_CLASS,
+                "file:mr-3 file:border-0 file:bg-transparent file:text-sm file:font-bold file:text-heading",
+              )}
+            />
+            {state.fieldErrors?.image?.length ? (
+              <p className="mt-1.5 text-xs font-bold text-brand">
+                {state.fieldErrors.image[0]}
+              </p>
+            ) : null}
+          </div>
+
           <Field
             id="title"
             name="title"

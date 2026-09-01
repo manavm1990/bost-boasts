@@ -112,7 +112,8 @@ export default function EditorialsPage() {
           </li>
           <li>
             We’ll ask for your full name and a contact email when you submit.
-            The email is for follow-up only and won’t be published.
+            The email is for follow-up only and won’t be published. You can
+            optionally attach a headshot for the byline.
           </li>
           <li>
             Submit through the{" "}

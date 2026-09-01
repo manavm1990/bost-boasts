@@ -2,6 +2,7 @@
 
 import { flattenError } from "zod";
 import { submissionSchema } from "@/lib/submission.schema";
+import { validateOptionalImage } from "@/lib/submission-image";
 import write from "@/sanity/lib/write";
 
 export type SubmitState = {
@@ -37,10 +38,23 @@ export async function submitEditorial(
       message: "Please fix the highlighted fields and resubmit.",
     };
 
+  const imageResult = validateOptionalImage(formData.get("image"));
+  if (!imageResult.ok)
+    return {
+      status: "error",
+      fieldErrors: { image: [imageResult.error] },
+      message: "Please fix the highlighted fields and resubmit.",
+    };
+
   try {
+    const image = imageResult.file
+      ? await uploadAuthorImage(imageResult.file)
+      : undefined;
+
     await write.create({
       _type: "submission",
       ...parsed.data,
+      ...(image ? { image } : {}),
       submittedAt: new Date().toISOString(),
     });
   } catch {
@@ -51,4 +65,21 @@ export async function submitEditorial(
   }
 
   return { status: "success" };
+}
+
+async function uploadAuthorImage(file: File) {
+  // Buffer is more reliable than File across Node/Bun server runtimes.
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const asset = await write.assets.upload("image", buffer, {
+    filename: file.name || "author-photo",
+    contentType: file.type,
+  });
+
+  return {
+    _type: "image" as const,
+    asset: {
+      _type: "reference" as const,
+      _ref: asset._id,
+    },
+  };
 }
