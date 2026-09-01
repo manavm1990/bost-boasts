@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
+    "test": "bun test",
     "typegen": "bunx sanity@latest schema extract --force --enforce-required-fields --path=sanity/extract.json && bunx sanity@latest typegen generate",
     "skills:update": "skills update -y -p && rm -rf .claude",
     "prepare": "husky"
@@ -43,6 +44,7 @@
     "@biomejs/biome": "2.5.11",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
+    "@types/bun": "^1.4.0",
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
