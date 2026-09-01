@@ -1,4 +1,4 @@
-const EDITOR_EMAIL = "editor@il12dispatch.org";
+import { EDITOR_EMAIL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-info";
 
 export default function Footer() {
   return (
@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-7">
         <div className="space-y-1">
           <p className="text-sm font-bold tracking-wide text-brand-tint">
-            The IL-12 Dispatch
+            {SITE_NAME}
           </p>
           <p className="text-xs">
             <a
@@ -17,10 +17,7 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <p className="text-xs">
-          Independent accountability reporting for Illinois's 12th Congressional
-          District.
-        </p>
+        <p className="text-xs">{SITE_DESCRIPTION}</p>
       </div>
     </footer>
   );

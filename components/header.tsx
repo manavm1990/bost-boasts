@@ -1,6 +1,11 @@
 import Link from "next/link";
+import NavLink from "@/components/nav-link.client";
+import { DISTRICT_NAME, SITE_NAME, SITE_TAGLINE } from "@/lib/site-info";
 
-const navItems = [{ href: "/", label: "Posts" }] as const;
+const navItems = [
+  { href: "/", label: "Posts" },
+  { href: "/editorials", label: "Editorials" },
+] as const;
 
 export default function Header() {
   return (
@@ -8,10 +13,10 @@ export default function Header() {
       <div className="bg-ink text-brand-tint">
         <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-2">
           <span className="text-[11px] font-bold tracking-wider uppercase">
-            Illinois 12th Congressional District
+            {DISTRICT_NAME}
           </span>
           <span className="hidden text-[11px] text-brand-tint/70 italic sm:inline">
-            Holding our representatives accountable — one vote at a time
+            {SITE_TAGLINE}
           </span>
         </div>
       </div>
@@ -21,18 +26,13 @@ export default function Header() {
             href="/"
             className="font-serif text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl"
           >
-            The IL-12 Dispatch
+            {SITE_NAME}
           </Link>
           <nav aria-label="Primary">
             <ul className="flex items-center gap-7 pb-1">
               {navItems.map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="border-b-2 border-brand pb-1 text-[13px] font-bold tracking-wide text-slate-900 uppercase"
-                  >
-                    {label}
-                  </Link>
+                  <NavLink href={href}>{label}</NavLink>
                 </li>
               ))}
             </ul>

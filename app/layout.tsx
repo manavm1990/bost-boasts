@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Public_Sans, Source_Serif_4 } from "next/font/google";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-info";
 import { getSiteUrl } from "@/lib/site-url";
 
 const publicSans = Public_Sans({
@@ -17,27 +18,24 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "The IL-12 Dispatch",
-    template: "%s | The IL-12 Dispatch",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Independent accountability reporting for Illinois's 12th Congressional District.",
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "The IL-12 Dispatch",
-    title: "The IL-12 Dispatch",
-    description:
-      "Independent accountability reporting for Illinois's 12th Congressional District.",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "The IL-12 Dispatch",
-    description:
-      "Independent accountability reporting for Illinois's 12th Congressional District.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
 };
 
