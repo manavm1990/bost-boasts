@@ -6,6 +6,7 @@ import { categoryType } from "./category";
 import { factBoxType } from "./fact-box";
 import { postType } from "./post";
 import { pullQuoteType } from "./pull-quote";
+import { submissionType } from "./submission";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     factBoxType,
     postType,
     pullQuoteType,
+    submissionType,
   ],
 };

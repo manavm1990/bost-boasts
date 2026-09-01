@@ -13,7 +13,11 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title("Blog")
     .items([
-      // Primary content types appear first for quick access
+      // Incoming reader submissions surface first — they need regular triage.
+      S.documentTypeListItem("submission").title("Editorial Submissions"),
+      S.divider(),
+
+      // Primary content types appear next for quick access
       S.documentTypeListItem("post").title("Posts"),
       S.documentTypeListItem("category").title("Categories"),
       S.documentTypeListItem("author").title("Authors"),
@@ -25,6 +29,6 @@ export const structure: StructureResolver = (S) =>
        */
       ...S.documentTypeListItems().filter((item) => {
         const id = item.getId();
-        return id && !["post", "category", "author"].includes(id);
+        return id && !["submission", "post", "category", "author"].includes(id);
       }),
     ]);
