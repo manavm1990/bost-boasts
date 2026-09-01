@@ -5,6 +5,7 @@ import Author from "./author";
 import Categories from "./categories";
 import Published from "./published";
 import SanityImage from "./sanity-image";
+import SharePost from "./share-post.client";
 import { H1, Lead, OpinionBadge } from "./typography";
 
 export default function Post({
@@ -18,7 +19,12 @@ export default function Post({
   categories,
   postType,
   sources,
-}: NonNullable<FIRST_POST_QUERY_RESULT>) {
+  shareUrl,
+  shareText,
+}: NonNullable<FIRST_POST_QUERY_RESULT> & {
+  shareUrl: string;
+  shareText?: string;
+}) {
   return (
     <article className="mx-auto max-w-190">
       <header className="mb-8 border-b-2 border-slate-900 pb-5">
@@ -76,6 +82,15 @@ export default function Post({
             ))}
           </div>
         </footer>
+      ) : null}
+
+      {title ? (
+        <SharePost
+          className="mt-12"
+          url={shareUrl}
+          title={title}
+          text={shareText ?? dek ?? undefined}
+        />
       ) : null}
     </article>
   );
