@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { components } from "@/sanity/portable-text-components";
 import type { FIRST_POST_QUERY_RESULT } from "@/sanity/sanity.types";
@@ -6,7 +7,7 @@ import Categories from "./categories";
 import Published from "./published";
 import SanityImage from "./sanity-image";
 import SharePost from "./share-post.client";
-import { Eyebrow, H1, Lead, OpinionBadge } from "./typography";
+import { Eyebrow, H1, Lead, OpinionBadge, P } from "./typography";
 
 export default function Post({
   title,
@@ -49,6 +50,23 @@ export default function Post({
           <Author author={author} />
         </div>
       </header>
+
+      {postType === "editorial" ? (
+        <div className="mb-8 border-l-4 border-brand bg-brand-tint px-5 py-4">
+          <P className="mt-0 text-sm text-slate-700">
+            This is a Reader Editorial. It reflects the views of its author, not
+            the Dispatch, and isn't held to our reporting's verification
+            standard.{" "}
+            <Link
+              href="/editorials"
+              className="font-bold text-brand underline underline-offset-2"
+            >
+              Read our submission guide
+            </Link>
+            .
+          </P>
+        </div>
+      ) : null}
 
       {mainImage ? (
         <figure className="mb-8">
