@@ -46,7 +46,7 @@
               },
               {
                 "selector": { "kind": "function" },
-                "formats": ["camelCase", "PascalCase"]
+                "match": "[A-Za-z][A-Za-z0-9]*"
               },
               {
                 "selector": { "kind": "typeLike" },
