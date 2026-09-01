@@ -19,6 +19,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   const description = excerptForMeta(post.excerpt);
+  // Only override images when a cover exists; otherwise keep app/opengraph-image.png.
   const ogImage = post.mainImage
     ? [
         {
@@ -43,14 +44,14 @@ export async function generateMetadata({
       url: `/posts/${slug}`,
       publishedTime: post.publishedAt ?? undefined,
       modifiedTime: post._updatedAt ?? undefined,
-      images: ogImage,
       authors: post.author?.name ? [post.author.name] : undefined,
+      ...(ogImage ? { images: ogImage } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: post.title ?? undefined,
       description,
-      images: ogImage,
+      ...(ogImage ? { images: ogImage } : {}),
     },
   };
 }
