@@ -17,27 +17,27 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "IL-12 Dispatch",
-    template: "%s | IL-12 Dispatch",
+    default: "The IL-12 Dispatch",
+    template: "%s | The IL-12 Dispatch",
   },
   description:
-    "Newsletters and dispatches for Illinois's 12th Congressional District.",
+    "Independent accountability reporting for Illinois's 12th Congressional District.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "IL-12 Dispatch",
-    title: "IL-12 Dispatch",
+    siteName: "The IL-12 Dispatch",
+    title: "The IL-12 Dispatch",
     description:
-      "Newsletters and dispatches for Illinois's 12th Congressional District.",
+      "Independent accountability reporting for Illinois's 12th Congressional District.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IL-12 Dispatch",
+    title: "The IL-12 Dispatch",
     description:
-      "Newsletters and dispatches for Illinois's 12th Congressional District.",
+      "Independent accountability reporting for Illinois's 12th Congressional District.",
   },
 };
 

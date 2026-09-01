@@ -1,6 +1,33 @@
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
+const sourceItem = defineArrayMember({
+  type: "object",
+  name: "sourceItem",
+  fields: [
+    defineField({
+      name: "label",
+      title: "Bold label",
+      type: "string",
+      description: 'Short bold lead-in, e.g. "Voting Record"',
+      validation: (rule) => rule.required().error("Label is required"),
+    }),
+    defineField({
+      name: "citation",
+      title: "Citation",
+      type: "text",
+      rows: 2,
+      validation: (rule) => rule.required().error("Citation is required"),
+    }),
+  ],
+  preview: {
+    select: { label: "label", citation: "citation" },
+    prepare({ label, citation }) {
+      return { title: label, subtitle: citation };
+    },
+  },
+});
+
 export const postType = defineType({
   name: "post",
   title: "Post",
@@ -22,6 +49,15 @@ export const postType = defineType({
           .error("Post title is required")
           .max(60)
           .warning("Keep titles under 60 characters for better SEO"),
+    }),
+    defineField({
+      name: "dek",
+      title: "Dek (subheadline)",
+      description:
+        "Italic subheadline shown under the title on the post page and as a teaser on the homepage list.",
+      type: "text",
+      rows: 2,
+      group: "editorial",
     }),
     defineField({
       name: "slug",
@@ -73,6 +109,23 @@ export const postType = defineType({
       of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
     }),
     defineField({
+      name: "postType",
+      title: "Post type",
+      description:
+        "Dispatch = fact-based reporting. Editorial = opinion/analysis, shown with an Opinion label.",
+      type: "string",
+      group: "metadata",
+      options: {
+        list: [
+          { title: "Dispatch", value: "dispatch" },
+          { title: "Editorial", value: "editorial" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "dispatch",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "publishedAt",
       title: "Published At",
       type: "datetime",
@@ -80,9 +133,25 @@ export const postType = defineType({
       initialValue: () => new Date().toISOString(),
     }),
     defineField({
+      name: "issueLabel",
+      title: "Issue label",
+      description:
+        'Shown next to the date, e.g. "Issue No. 13" or "Special Edition".',
+      type: "string",
+      group: "metadata",
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "blockContent",
+      group: "editorial",
+    }),
+    defineField({
+      name: "sources",
+      title: "Sources",
+      description: "Citations shown in small type at the bottom of the post.",
+      type: "array",
+      of: [sourceItem],
       group: "editorial",
     }),
   ],

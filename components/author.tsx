@@ -1,27 +1,26 @@
-import Image from "next/image";
-import urlFor from "@/sanity/lib/url-for";
-import type { PAGINATED_POSTS_QUERY_RESULT } from "@/sanity/sanity.types";
+import type { FIRST_POST_QUERY_RESULT } from "@/sanity/sanity.types";
+import SanityImage from "./sanity-image";
 
 export default function Author({
   author,
 }: {
-  author: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["author"];
+  author: NonNullable<FIRST_POST_QUERY_RESULT>["author"];
 }) {
   return author?.image || author?.name ? (
     <figure className="flex items-center gap-2">
       {author?.image ? (
-        <Image
-          src={urlFor(author.image).width(80).height(80).url()}
-          width={80}
-          height={80}
+        <SanityImage
+          image={author.image}
+          width={48}
+          height={48}
           alt=""
-          className="bg-pink-50 size-10 shadow-inner rounded-full"
+          className="size-6 rounded-full bg-brand-tint shadow-inner"
         />
       ) : null}
 
       {author?.name ? (
-        <figcaption className="text-base text-slate-700">
-          {author.name}
+        <figcaption className="text-[13px] font-semibold text-slate-500">
+          By {author.name}
         </figcaption>
       ) : null}
     </figure>

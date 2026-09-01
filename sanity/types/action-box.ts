@@ -1,34 +1,35 @@
-import { BookIcon } from "@sanity/icons/Book";
+import { CheckmarkCircleIcon } from "@sanity/icons/CheckmarkCircle";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-export const factBoxType = defineType({
-  name: "factBox",
-  title: "Fact box",
+export const actionBoxType = defineType({
+  name: "actionBox",
+  title: "Action box",
   type: "object",
-  icon: BookIcon,
+  icon: CheckmarkCircleIcon,
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "string",
-      initialValue: "The Record",
+      initialValue: "Take Action",
     }),
     defineField({
       name: "items",
       title: "Items",
       description:
-        'Each row renders as a bullet point. The label (optional) is bolded, e.g. "The deal:" before the rest of the text.',
+        'Each row renders as a bullet point. The label (optional) is bolded, e.g. "Submit a comment to the ICC." before the rest of the text.',
       type: "array",
       of: [
         defineArrayMember({
           type: "object",
-          name: "factBoxItem",
+          name: "actionBoxItem",
           fields: [
             defineField({
               name: "label",
               title: "Bold label",
               type: "string",
-              description: 'Optional bold lead-in, e.g. "March 5"',
+              description:
+                'Optional bold lead-in, e.g. "Ask Rep. Bost where he stands."',
             }),
             defineField({
               name: "text",
@@ -50,7 +51,7 @@ export const factBoxType = defineType({
         }),
       ],
       validation: (rule) =>
-        rule.min(1).error("Add at least one item to the fact box"),
+        rule.min(1).error("Add at least one item to the action box"),
     }),
   ],
   preview: {
@@ -60,7 +61,7 @@ export const factBoxType = defineType({
     },
     prepare({ title, items }) {
       return {
-        title: title || "The Record",
+        title: title || "Take Action",
         subtitle: items?.length ? `${items.length} item(s)` : undefined,
       };
     },

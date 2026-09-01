@@ -17,10 +17,14 @@ export const FIRST_POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
+  dek,
+  postType,
   body,
   "excerpt": pt::text(body),
   mainImage,
   publishedAt,
+  issueLabel,
+  sources,
   _updatedAt,
   "categories": coalesce(
     categories[]->{
@@ -41,9 +45,11 @@ export const PAGINATED_POSTS_QUERY =
   defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...${POSTS_PER_PAGE}]{
   _id,
   title,
+  dek,
+  postType,
   slug,
-  mainImage,
   publishedAt,
+  issueLabel,
   "categories": coalesce(
     categories[]->{
       _id,
@@ -51,9 +57,5 @@ export const PAGINATED_POSTS_QUERY =
       title
     },
     []
-  ),
-  author->{
-    name,
-    image
-  }
+  )
 }`);

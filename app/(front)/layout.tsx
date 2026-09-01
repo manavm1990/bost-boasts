@@ -1,4 +1,5 @@
-import { Header } from "@/components/header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
 
@@ -11,6 +12,7 @@ export default function FrontLayout({
     <>
       <Header />
       {children}
+      <Footer />
       <SanityLive />
     </>
   );

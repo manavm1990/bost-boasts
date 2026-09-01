@@ -1,7 +1,7 @@
 import { ImageIcon } from "@sanity/icons/Image";
 import { defineArrayMember, defineType } from "sanity";
+import { actionBoxType } from "./action-box";
 import { factBoxType } from "./fact-box";
-import { kickerType } from "./kicker";
 import { pullQuoteType } from "./pull-quote";
 
 /**
@@ -24,18 +24,13 @@ export const blockContentType = defineType({
 
       /**
        * Styles define the different block types that can be used in the editor.
-       * Each style corresponds to a specific HTML tag or custom rendering.
-       * The "Normal" style is the default and
-       * renders as a standard paragraph (<p>),
-       * while "H1" through "H4" render as heading tags (<h1> to <h4>).
-       * The "Quote" style renders as a blockquote (<blockquote>).
+       * The post's main title is its own field, not a body style, so the
+       * only heading level bodies need is one section divider — kept to two
+       * styles total so the picker stays simple for non-technical editors.
        */
       styles: [
         { title: "Normal", value: "normal" },
-        { title: "H1", value: "h1" },
-        { title: "H2", value: "h2" },
-        { title: "H3", value: "h3" },
-        { title: "H4", value: "h4" },
+        { title: "Section Heading", value: "h2" },
         { title: "Quote", value: "blockquote" },
       ],
       lists: [{ title: "Bullet", value: "bullet" }],
@@ -83,8 +78,8 @@ export const blockContentType = defineType({
         },
       ],
     }),
+    defineArrayMember({ type: actionBoxType.name }),
     defineArrayMember({ type: factBoxType.name }),
-    defineArrayMember({ type: kickerType.name }),
     defineArrayMember({ type: pullQuoteType.name }),
   ],
 });

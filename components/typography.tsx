@@ -1,6 +1,24 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
+export function ActionBox({
+  title = "Take Action",
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"div"> & { title?: string }) {
+  return (
+    <div className={cn("my-6 bg-ink px-6 py-6", className)} {...props}>
+      <h3 className="mb-4 font-sans text-xs font-extrabold tracking-wide text-brand-tint uppercase">
+        {title}
+      </h3>
+      <div className="text-sm text-white [&_li]:mt-3 [&_strong]:text-white [&_ul]:ml-5 [&_ul]:list-disc">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export function Blockquote({
   className,
   ...props
@@ -183,6 +201,38 @@ export function PullQuote({
         </footer>
       ) : null}
     </blockquote>
+  );
+}
+
+export function OpinionBadge({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"span">) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 rounded-xs border border-slate-400 px-1.5 py-0.5 text-[10px] font-extrabold tracking-wide text-slate-500 uppercase",
+        className,
+      )}
+      {...props}
+    >
+      Opinion
+    </span>
+  );
+}
+
+export function SectionHeading({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"h2">) {
+  return (
+    <h2
+      className={cn(
+        "mt-10 mb-5 border-t-[3px] border-slate-900 pt-5 font-sans text-lg font-extrabold tracking-wide text-slate-900 uppercase",
+        className,
+      )}
+      {...props}
+    />
   );
 }
 

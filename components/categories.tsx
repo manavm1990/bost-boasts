@@ -5,13 +5,13 @@ export default function Categories({
 }: {
   categories: NonNullable<PAGINATED_POSTS_QUERY_RESULT>[number]["categories"];
 }) {
+  if (!categories.length) return null;
+
   return (
-    <ul className="flex gap-2">
-      {categories.map((category) => (
-        <li
-          key={category._id}
-          className="bg-cyan-50 rounded-full px-2 py-1 leading-none whitespace-nowrap text-sm font-semibold text-cyan-700 list-none"
-        >
+    <ul className="flex flex-wrap gap-2 text-xs font-extrabold tracking-wide text-brand uppercase">
+      {categories.map((category, i) => (
+        <li key={category._id} className="flex list-none items-center gap-2">
+          {i > 0 ? <span className="text-slate-300">|</span> : null}
           {category.title}
         </li>
       ))}

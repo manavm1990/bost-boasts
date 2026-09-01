@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Post } from "@/components/post";
+import Post from "@/components/post";
 import { getPostBySlug } from "@/lib/get-post";
 import urlFor from "@/sanity/lib/url-for";
 
@@ -60,8 +61,16 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post) notFound();
 
   return (
-    <main className="container mx-auto py-12">
+    <main className="container mx-auto px-6 pt-12 pb-24">
       <Post {...post} />
+      <nav className="mx-auto mt-14 max-w-190 border-t border-slate-200 pt-6">
+        <Link
+          href="/"
+          className="text-[13px] font-bold tracking-wide text-brand uppercase"
+        >
+          &larr; Back to all posts
+        </Link>
+      </nav>
     </main>
   );
 }
