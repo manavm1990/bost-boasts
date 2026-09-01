@@ -4,4 +4,8 @@
 @theme inline {
   --font-sans: var(--font-public-sans);
   --font-serif: var(--font-source-serif);
+
+  --color-brand: #a83a2e;
+  --color-brand-dark: #8a2f25;
+  --color-brand-tint: #f5e6e3;
 }
