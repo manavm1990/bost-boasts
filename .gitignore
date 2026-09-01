@@ -19,6 +19,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -42,3 +43,6 @@ next-env.d.ts
 
 # skills CLI adapter path for Claude Code (canonical skills live in .agents/skills/)
 .claude/
+
+# sanity
+.sanity/
