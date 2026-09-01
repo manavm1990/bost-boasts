@@ -16,7 +16,7 @@ export default function Published({
   if (!publishedAt) return null;
 
   return (
-    <p className={cn("text-base text-slate-700", className)}>
+    <p className={cn("text-base text-body", className)}>
       <time dateTime={publishedAt}>
         {dayjs(publishedAt).format("MMMM D, YYYY").toUpperCase()}
       </time>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NavLink from "@/components/nav-link.client";
+import ThemeToggle from "@/components/theme-toggle.client";
 import { DISTRICT_NAME, SITE_NAME, SITE_TAGLINE } from "@/lib/site-info";
 
 const navItems = [
@@ -20,11 +21,11 @@ export default function Header() {
           </span>
         </div>
       </div>
-      <header className="border-b-[6px] border-brand bg-white">
+      <header className="border-b-[6px] border-brand bg-paper">
         <div className="container mx-auto flex flex-wrap items-end justify-between gap-6 px-6 py-6">
           <Link
             href="/"
-            className="font-serif text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl"
+            className="font-serif text-3xl font-extrabold tracking-tight text-heading md:text-4xl"
           >
             {SITE_NAME}
           </Link>
@@ -35,6 +36,9 @@ export default function Header() {
                   <NavLink href={href}>{label}</NavLink>
                 </li>
               ))}
+              <li>
+                <ThemeToggle />
+              </li>
             </ul>
           </nav>
         </div>

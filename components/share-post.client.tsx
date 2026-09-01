@@ -19,7 +19,7 @@ type SharePostProps = {
 };
 
 const LINK_CLASS_NAME =
-  "inline-flex items-center gap-1.5 rounded-sm px-2 py-1.5 text-[12px] font-bold tracking-wide text-slate-600 uppercase transition-colors hover:bg-brand-tint hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+  "inline-flex items-center gap-1.5 rounded-sm px-2 py-1.5 text-[12px] font-bold tracking-wide text-dek uppercase transition-colors hover:bg-tint hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 const buttonClassName = cn(
   LINK_CLASS_NAME,
   "border-0 bg-transparent cursor-pointer",
@@ -81,7 +81,7 @@ export default function SharePost({
 
   return (
     <section
-      className={cn("border-t border-slate-200 pt-5", className)}
+      className={cn("border-t border-border pt-5", className)}
       aria-labelledby="share-post-heading"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">

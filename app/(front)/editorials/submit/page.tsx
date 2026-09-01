@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 import { submitEditorial } from "./actions";
 
 const LABEL_CLASS =
-  "mb-1.5 block text-xs font-extrabold tracking-wide text-slate-600 uppercase";
+  "mb-1.5 block text-xs font-extrabold tracking-wide text-dek uppercase";
 const INPUT_CLASS =
-  "w-full rounded-sm border border-slate-300 px-3 py-2 text-[15px] text-slate-900 outline-none focus:border-brand focus:ring-1 focus:ring-brand";
+  "w-full rounded-sm border border-border px-3 py-2 text-[15px] text-heading outline-none focus:border-brand focus:ring-1 focus:ring-brand";
 
 export default function SubmitEditorialPage() {
   const [state, formAction, isPending] = useActionState(submitEditorial, {
@@ -163,7 +163,7 @@ function Field({
       <label htmlFor={id} className={LABEL_CLASS}>
         {label}
         {required ? null : (
-          <span className="ml-1 font-medium normal-case text-slate-400">
+          <span className="ml-1 font-medium normal-case text-muted-2">
             (optional)
           </span>
         )}

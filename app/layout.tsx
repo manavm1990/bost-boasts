@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@wrksz/themes/next";
 import type { Metadata } from "next";
 import { Public_Sans, Source_Serif_4 } from "next/font/google";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-info";
@@ -48,8 +49,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${publicSans.variable} ${sourceSerif.variable}`}
+      suppressHydrationWarning
     >
-      <body className="antialiased">{children}</body>
+      <body className="bg-paper text-body antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

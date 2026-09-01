@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <main className="container mx-auto flex flex-col items-center px-6 py-16 text-center sm:py-20 md:items-start md:py-28 md:text-left">
       <Kicker section="Correction & Clarification" className="mb-3" />
-      <h1 className="mb-4 font-serif text-[80px] leading-[0.9] font-extrabold tracking-tight text-ink sm:text-[100px] md:text-[120px]">
+      <h1 className="mb-4 font-serif text-[80px] leading-[0.9] font-extrabold tracking-tight text-heading sm:text-[100px] md:text-[120px]">
         404
       </h1>
       <Lead className="mb-4 max-w-md italic sm:text-2xl md:max-w-lg">

@@ -28,7 +28,7 @@ export default function Post({
 }) {
   return (
     <article className="mx-auto max-w-190">
-      <header className="mb-8 border-b-2 border-slate-900 pb-5">
+      <header className="mb-8 border-b-2 border-heading pb-5">
         <div className="flex items-center gap-2.5">
           <Categories categories={categories} />
           {postType === "editorial" ? <OpinionBadge /> : null}
@@ -37,7 +37,7 @@ export default function Post({
           {title}
         </H1>
         {dek ? (
-          <Lead className="mt-4 font-serif text-[19px] leading-[1.55] text-slate-600 italic">
+          <Lead className="mt-4 font-serif text-[19px] leading-[1.55] text-dek italic">
             {dek}
           </Lead>
         ) : null}
@@ -45,15 +45,15 @@ export default function Post({
           <Published
             publishedAt={publishedAt}
             issueLabel={issueLabel}
-            className="text-[13px] font-bold text-slate-500"
+            className="text-[13px] font-bold text-muted"
           />
           <Author author={author} />
         </div>
       </header>
 
       {postType === "editorial" ? (
-        <div className="mb-8 border-l-4 border-brand bg-brand-tint px-5 py-4">
-          <P className="mt-0 text-sm text-slate-700">
+        <div className="mb-8 border-l-4 border-brand bg-tint px-5 py-4">
+          <P className="mt-0 text-sm text-tint-text">
             This is a Reader Editorial. It reflects the views of its author, not
             the Dispatch, and isn't held to our reporting's verification
             standard.{" "}
@@ -81,18 +81,18 @@ export default function Post({
       ) : null}
 
       {body ? (
-        <section className="prose prose-slate max-w-none prose-headings:font-sans prose-p:text-[17px] prose-p:leading-[1.75] prose-p:text-slate-700">
+        <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-sans prose-p:text-[17px] prose-p:leading-[1.75] prose-p:text-body">
           <PortableText value={body} components={components} />
         </section>
       ) : null}
 
       {sources?.length ? (
-        <footer className="mt-12 border-t border-slate-200 pt-5">
+        <footer className="mt-12 border-t border-border pt-5">
           <Eyebrow className="mb-4">Sources</Eyebrow>
-          <div className="space-y-2.5 text-[13px] leading-relaxed text-slate-500">
+          <div className="space-y-2.5 text-[13px] leading-relaxed text-muted">
             {sources.map((source) => (
               <p key={source._key}>
-                <strong className="text-slate-600">{source.label}:</strong>{" "}
+                <strong className="text-dek">{source.label}:</strong>{" "}
                 {source.citation}
               </p>
             ))}

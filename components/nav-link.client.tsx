@@ -20,8 +20,8 @@ export default function NavLink({
       className={cn(
         "pb-1 text-[13px] font-bold tracking-wide uppercase",
         isActive
-          ? "border-b-2 border-brand text-slate-900"
-          : "text-slate-500 transition-colors hover:text-slate-900",
+          ? "border-b-2 border-brand text-heading"
+          : "text-muted transition-colors hover:text-heading",
         className,
       )}
       {...props}

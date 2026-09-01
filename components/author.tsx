@@ -14,12 +14,12 @@ export default function Author({
           width={48}
           height={48}
           alt=""
-          className="size-6 rounded-full bg-brand-tint shadow-inner"
+          className="size-6 rounded-full bg-tint shadow-inner"
         />
       ) : null}
 
       {author?.name ? (
-        <figcaption className="text-[13px] font-semibold text-slate-500">
+        <figcaption className="text-[13px] font-semibold text-muted">
           By {author.name}
         </figcaption>
       ) : null}

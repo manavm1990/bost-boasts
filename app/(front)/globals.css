@@ -1,12 +1,47 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: var(--font-public-sans);
   --font-serif: var(--font-source-serif);
+}
 
+@theme {
   --color-brand: #a83a2e;
   --color-brand-dark: #8a2f25;
   --color-brand-tint: #f5e6e3;
   --color-ink: #181613;
+
+  --color-paper: #ffffff;
+  --color-heading: #181613;
+  --color-body: #334155;
+  --color-dek: #475569;
+  --color-muted: #64748b;
+  --color-muted-2: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-tint: #f5e6e3;
+  --color-tint-text: #1e1b1a;
+}
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-brand: #c85445;
+  --color-brand-dark: #d9695a;
+
+  --color-paper: #201c19;
+  --color-heading: #f7ece7;
+  --color-body: #d8cdc5;
+  --color-dek: #cdc0b8;
+  --color-muted: #b9ada4;
+  --color-muted-2: #a0938a;
+  --color-border: #3d352f;
+  --color-tint: #2c2420;
+  --color-tint-text: #f0e6e1;
 }

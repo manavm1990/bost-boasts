@@ -18,8 +18,8 @@ export default function EditorialsPage() {
         <Kicker section="Opinion" />
         <H1 className="mt-3.5 font-extrabold">Reader Editorials</H1>
 
-        <div className="my-8 border-l-4 border-brand bg-brand-tint px-6 py-5">
-          <P className="mt-0 font-serif text-lg leading-relaxed text-slate-800 italic">
+        <div className="my-8 border-l-4 border-brand bg-tint px-6 py-5">
+          <P className="mt-0 font-serif text-lg leading-relaxed text-tint-text italic">
             Reader Editorials are opinion pieces submitted by IL-12 Dispatch
             readers. They reflect the views of their individual authors, not the
             Dispatch. They are reviewed for obvious factual errors, sourcing,
@@ -40,13 +40,13 @@ export default function EditorialsPage() {
         <Kicker section="What We're Looking For" className="mt-8 mb-2.5" />
         <div className="space-y-5">
           <P className="mt-0">
-            <strong className="text-slate-900">A local hook.</strong> Tie your
+            <strong className="text-heading">A local hook.</strong> Tie your
             piece to something specific: a vote, a local event, a decision that
             affects IL-12. "Rep. Bost voted for X on [date]" beats "Congress is
             broken."
           </P>
           <P className="mt-0">
-            <strong className="text-slate-900">
+            <strong className="text-heading">
               One clear point, argued all the way through.
             </strong>{" "}
             Every paragraph should support the same central claim. Side points
@@ -54,19 +54,19 @@ export default function EditorialsPage() {
             back.
           </P>
           <P className="mt-0">
-            <strong className="text-slate-900">Plain language.</strong> Short
+            <strong className="text-heading">Plain language.</strong> Short
             sentences. No jargon. Write like you're explaining this to a
             neighbor, not lecturing them. Read your draft out loud before you
             send it. If it sounds like a lecture, rewrite it.
           </P>
           <P className="mt-0">
-            <strong className="text-slate-900">A specific ending.</strong> Tell
+            <strong className="text-heading">A specific ending.</strong> Tell
             the reader what to do: contact an official, attend a meeting, look
             something up. "We must do better" is not an ending. "Call Rep.
             Bost's office at [number] and ask why he voted X" is.
           </P>
           <P className="mt-0">
-            <strong className="text-slate-900">No name-calling.</strong> You can
+            <strong className="text-heading">No name-calling.</strong> You can
             say someone's record contradicts their statements. You cannot call
             them a liar, a hypocrite, or worse. Let the contradiction speak.
             It's stronger than the insult.
@@ -149,8 +149,8 @@ export default function EditorialsPage() {
           sourcing. Please don't take it personally.
         </P>
 
-        <div className="flex flex-wrap items-center justify-between gap-5 border-t border-slate-200 pt-8">
-          <P className="mt-0 font-serif text-lg text-slate-900 italic">
+        <div className="flex flex-wrap items-center justify-between gap-5 border-t border-border pt-8">
+          <P className="mt-0 font-serif text-lg text-heading italic">
             Publication isn't guaranteed. We choose what runs.
           </P>
           <Link
