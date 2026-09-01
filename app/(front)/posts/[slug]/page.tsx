@@ -19,7 +19,8 @@ export async function generateMetadata({
   if (!post) return {};
 
   const description = excerptForMeta(post.excerpt);
-  // Only override images when a cover exists; otherwise keep app/opengraph-image.png.
+  // Explicit fallback: this route always sets its own `openGraph` object, so
+  // Next's app/opengraph-image.png file-convention merge never kicks in here.
   const ogImage = post.mainImage
     ? [
         {
@@ -29,7 +30,14 @@ export async function generateMetadata({
           alt: post.mainImage.alt || post.title || "Post cover image",
         },
       ]
-    : undefined;
+    : [
+        {
+          url: `${getSiteUrl()}/opengraph-image.png`,
+          width: 1200,
+          height: 630,
+          alt: post.title || "The IL-12 Dispatch",
+        },
+      ];
 
   return {
     title: post.title,
@@ -45,13 +53,13 @@ export async function generateMetadata({
       publishedTime: post.publishedAt ?? undefined,
       modifiedTime: post._updatedAt ?? undefined,
       authors: post.author?.name ? [post.author.name] : undefined,
-      ...(ogImage ? { images: ogImage } : {}),
+      images: ogImage,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title ?? undefined,
       description,
-      ...(ogImage ? { images: ogImage } : {}),
+      images: ogImage,
     },
   };
 }
