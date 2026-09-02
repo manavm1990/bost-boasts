@@ -1,17 +1,11 @@
 import "server-only";
 
-import { Resend } from "resend";
 import SubmissionAckEmail from "@/emails/submission-ack";
 import SubmissionAlertEmail from "@/emails/submission-alert";
+import { getResend } from "@/lib/resend";
 import { EDITOR_EMAIL, SITE_NAME } from "@/lib/site-info";
 import { getSiteUrl } from "@/lib/site-url";
 import type { SubmissionInput } from "@/lib/submission.schema";
-
-function getResend() {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return null;
-  return new Resend(apiKey);
-}
 
 function getFromAddress() {
   return (

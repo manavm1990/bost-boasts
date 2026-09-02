@@ -5,3 +5,5 @@ export const SITE_DESCRIPTION =
 export const SITE_NAME = "The IL-12 Dispatch";
 export const SITE_TAGLINE =
   "Holding our representatives accountable — one vote at a time";
+/** CAN-SPAM / newsletter footer. Home address is fine for a small local outlet. */
+export const SITE_POSTAL_ADDRESS = "22 Oak Ridge Dr., Columbia, IL 62236";

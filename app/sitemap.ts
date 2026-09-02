@@ -7,10 +7,10 @@ import type { ALL_POST_SLUGS_RESULT } from "@/sanity/sanity.types";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-    },
+    { url: baseUrl, lastModified: new Date() },
+    { url: `${baseUrl}/editorials`, lastModified: new Date() },
+    { url: `${baseUrl}/editorials/submit`, lastModified: new Date() },
+    { url: `${baseUrl}/subscribe`, lastModified: new Date() },
   ];
 
   try {

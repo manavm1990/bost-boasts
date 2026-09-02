@@ -2,7 +2,10 @@ import { z } from "zod";
 
 export const submissionSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(120),
-  email: z.string().trim().email("Enter a valid email address"),
+  email: z
+    .string()
+    .trim()
+    .pipe(z.email({ error: "Enter a valid email address" })),
   title: z.string().trim().max(120).optional(),
   thesis: z.string().trim().min(1, "One-sentence point is required").max(400),
   body: z.string().trim().min(1, "Draft text is required").max(12000),
