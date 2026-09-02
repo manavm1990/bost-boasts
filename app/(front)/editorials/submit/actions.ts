@@ -2,16 +2,49 @@
 
 import { after } from "next/server";
 import { flattenError } from "zod";
-import { notifyEditorialSubmission } from "@/lib/email";
 import { submissionSchema } from "@/lib/submission.schema";
 import { validateOptionalImage } from "@/lib/submission-image";
 import write from "@/sanity/lib/write";
+
+export type SubmitValues = {
+  name: string;
+  email: string;
+  title: string;
+  thesis: string;
+  body: string;
+  sources: string;
+};
 
 export type SubmitState = {
   status: "idle" | "success" | "error";
   fieldErrors?: Record<string, string[]>;
   message?: string;
+  values?: SubmitValues;
+  formKey?: string;
 };
+
+function readValues(formData: FormData): SubmitValues {
+  return {
+    name: String(formData.get("name") ?? ""),
+    email: String(formData.get("email") ?? ""),
+    title: String(formData.get("title") ?? ""),
+    thesis: String(formData.get("thesis") ?? ""),
+    body: String(formData.get("body") ?? ""),
+    sources: String(formData.get("sources") ?? ""),
+  };
+}
+
+function errorState(
+  values: SubmitValues,
+  partial: Pick<SubmitState, "fieldErrors" | "message">,
+): SubmitState {
+  return {
+    status: "error",
+    values,
+    formKey: crypto.randomUUID(),
+    ...partial,
+  };
+}
 
 export async function submitEditorial(
   _prevState: SubmitState,
@@ -19,34 +52,41 @@ export async function submitEditorial(
 ): Promise<SubmitState> {
   if (formData.get("company")) return { status: "success" }; // 🍯
 
-  const sources = (formData.get("sources") as string | null)
-    ?.split("\n")
+  const values = readValues(formData);
+
+  const sources = values.sources
+    .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
 
   const parsed = submissionSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    title: formData.get("title") || undefined,
-    thesis: formData.get("thesis"),
-    body: formData.get("body"),
+    name: values.name,
+    email: values.email,
+    title: values.title || undefined,
+    thesis: values.thesis,
+    body: values.body,
     sources,
   });
 
   if (!parsed.success)
-    return {
-      status: "error",
+    return errorState(values, {
       fieldErrors: flattenError(parsed.error).fieldErrors,
       message: "Please fix the highlighted fields and resubmit.",
-    };
+    });
 
   const imageResult = validateOptionalImage(formData.get("image"));
   if (!imageResult.ok)
-    return {
-      status: "error",
+    return errorState(values, {
       fieldErrors: { image: [imageResult.error] },
       message: "Please fix the highlighted fields and resubmit.",
-    };
+    });
+
+  if (!process.env.SANITY_API_WRITE_TOKEN) {
+    console.error("[submit] SANITY_API_WRITE_TOKEN is not set");
+    return errorState(values, {
+      message: "Something went wrong on our end. Please try again shortly.",
+    });
+  }
 
   try {
     const image = imageResult.file
@@ -60,17 +100,22 @@ export async function submitEditorial(
       submittedAt: new Date().toISOString(),
     });
 
-    after(() =>
-      notifyEditorialSubmission({
-        submission: parsed.data,
-        documentId: doc._id,
-      }),
-    );
-  } catch {
-    return {
-      status: "error",
+    after(async () => {
+      try {
+        const { notifyEditorialSubmission } = await import("@/lib/email");
+        await notifyEditorialSubmission({
+          submission: parsed.data,
+          documentId: doc._id,
+        });
+      } catch (err) {
+        console.error("[submit] email notify failed", err);
+      }
+    });
+  } catch (err) {
+    console.error("[submit] Sanity write failed", err);
+    return errorState(values, {
       message: "Something went wrong on our end. Please try again shortly.",
-    };
+    });
   }
 
   return { status: "success" };

@@ -52,7 +52,11 @@ export default function SubmitEditorialPage() {
           sources for its factual claims will be sent back.
         </Lead>
 
-        <form action={formAction} className="mt-10 space-y-7">
+        <form
+          key={state.formKey ?? "submit-form"}
+          action={formAction}
+          className="mt-10 space-y-7"
+        >
           {/* Honeypot — real visitors never see this field. */}
           <div className="sr-only" aria-hidden="true">
             <label htmlFor="company">Company</label>
@@ -70,6 +74,7 @@ export default function SubmitEditorialPage() {
             name="name"
             label="Your name"
             hint="As you want it published."
+            defaultValue={state.values?.name}
             errors={state.fieldErrors?.name}
           />
 
@@ -79,6 +84,7 @@ export default function SubmitEditorialPage() {
             type="email"
             label="Contact email"
             hint="Not published — for follow-up only."
+            defaultValue={state.values?.email}
             errors={state.fieldErrors?.email}
           />
 
@@ -98,6 +104,7 @@ export default function SubmitEditorialPage() {
             name="title"
             label="Suggested title"
             required={false}
+            defaultValue={state.values?.title}
             errors={state.fieldErrors?.title}
           />
 
@@ -107,6 +114,7 @@ export default function SubmitEditorialPage() {
             label="Your point, in one sentence"
             as="textarea"
             rows={2}
+            defaultValue={state.values?.thesis}
             errors={state.fieldErrors?.thesis}
           />
 
@@ -116,6 +124,7 @@ export default function SubmitEditorialPage() {
             label="Draft text"
             as="textarea"
             rows={16}
+            defaultValue={state.values?.body}
             errors={state.fieldErrors?.body}
           />
 
@@ -126,6 +135,7 @@ export default function SubmitEditorialPage() {
             hint="One link or citation per line — at least one is required."
             as="textarea"
             rows={5}
+            defaultValue={state.values?.sources}
             errors={state.fieldErrors?.sources}
           />
 
@@ -156,6 +166,7 @@ type FieldProps = {
   rows?: number;
   accept?: string;
   required?: boolean;
+  defaultValue?: string;
   errors?: string[];
 };
 
@@ -169,6 +180,7 @@ function Field({
   rows,
   accept,
   required = true,
+  defaultValue,
   errors,
 }: FieldProps) {
   const isFile = type === "file";
@@ -190,6 +202,7 @@ function Field({
           name={name}
           rows={rows}
           required={required}
+          defaultValue={defaultValue}
           className={cn(INPUT_CLASS, "resize-y")}
         />
       ) : (
@@ -199,6 +212,7 @@ function Field({
           type={type}
           accept={accept}
           required={required}
+          defaultValue={isFile ? undefined : defaultValue}
           className={cn(
             INPUT_CLASS,
             isFile &&

@@ -25,10 +25,10 @@ const PREVIEW_DEFAULTS = {
 } satisfies SubmissionAckEmailProps;
 
 export default function SubmissionAckEmail({
-  name = PREVIEW_DEFAULTS.name,
-  title = PREVIEW_DEFAULTS.title,
-  siteUrl = PREVIEW_DEFAULTS.siteUrl,
-}: SubmissionAckEmailProps = PREVIEW_DEFAULTS) {
+  name,
+  title,
+  siteUrl,
+}: SubmissionAckEmailProps) {
   const preview = title
     ? `We received your editorial: ${title}`
     : "We received your editorial submission";

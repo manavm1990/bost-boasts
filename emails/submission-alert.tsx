@@ -39,15 +39,15 @@ const previewDefaults = {
 } satisfies SubmissionAlertEmailProps;
 
 export default function SubmissionAlertEmail({
-  name = previewDefaults.name,
-  email = previewDefaults.email,
-  title = previewDefaults.title,
-  thesis = previewDefaults.thesis,
-  body = previewDefaults.body,
-  sources = previewDefaults.sources,
-  documentId = previewDefaults.documentId,
-  studioUrl = previewDefaults.studioUrl,
-}: SubmissionAlertEmailProps = previewDefaults) {
+  name,
+  email,
+  title,
+  thesis,
+  body,
+  sources,
+  documentId,
+  studioUrl,
+}: SubmissionAlertEmailProps) {
   const label = title || "(untitled)";
   const preview = `New editorial from ${name}: ${label}`;
   const bodyPreview =
