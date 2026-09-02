@@ -1,6 +1,8 @@
 "use server";
 
+import { after } from "next/server";
 import { flattenError } from "zod";
+import { notifyEditorialSubmission } from "@/lib/email";
 import { submissionSchema } from "@/lib/submission.schema";
 import { validateOptionalImage } from "@/lib/submission-image";
 import write from "@/sanity/lib/write";
@@ -51,12 +53,19 @@ export async function submitEditorial(
       ? await uploadAuthorImage(imageResult.file)
       : undefined;
 
-    await write.create({
+    const doc = await write.create({
       _type: "submission",
       ...parsed.data,
       ...(image ? { image } : {}),
       submittedAt: new Date().toISOString(),
     });
+
+    after(() =>
+      notifyEditorialSubmission({
+        submission: parsed.data,
+        documentId: doc._id,
+      }),
+    );
   } catch {
     return {
       status: "error",
@@ -68,7 +77,6 @@ export async function submitEditorial(
 }
 
 async function uploadAuthorImage(file: File) {
-  // Buffer is more reliable than File across Node/Bun server runtimes.
   const buffer = Buffer.from(await file.arrayBuffer());
   const asset = await write.assets.upload("image", buffer, {
     filename: file.name || "author-photo",
