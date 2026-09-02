@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterSignup from "@/components/newsletter-signup.client";
-import { H1, Kicker, Lead, List, P } from "@/components/typography";
+import { H1, Kicker, Lead, List, Muted } from "@/components/typography";
 import { SITE_NAME } from "@/lib/site-info";
 
 export const metadata: Metadata = {
@@ -28,15 +28,13 @@ export default function SubscribePage() {
         </div>
 
         <div className="mt-12 space-y-4 border-t border-border pt-8">
-          <P className="mt-0 text-sm text-muted">
-            What you&apos;re signing up for:
-          </P>
+          <Muted>What you&apos;re signing up for:</Muted>
           <List className="text-sm">
             <li>New Dispatch reporting when it ships</li>
             <li>Selected reader editorials we choose to run</li>
             <li>One-click unsubscribe on every message</li>
           </List>
-          <P className="text-sm text-muted">
+          <Muted>
             Want to write for us? See the{" "}
             <Link href="/editorials" className="font-bold text-brand underline">
               reader editorial guide
@@ -46,7 +44,7 @@ export default function SubscribePage() {
               browse recent posts
             </Link>
             .
-          </P>
+          </Muted>
         </div>
       </div>
     </main>
